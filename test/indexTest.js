@@ -1,4 +1,10 @@
-describe('drivers', function() {
+const expect = chai.expect;
+
+describe('drivers', function () {
+  it('defines a `driver` driver', function () {
+    expect(typeof driver).to.equal('object');
+  });
+
   describe('updateDriverWithKeyAndValue(driver, key, value)', function () {
     beforeEach(function () {
       for (const key in driver) {
@@ -8,7 +14,7 @@ describe('drivers', function() {
       driver.name = 'Sam';
     });
 
-    it('returns a driver with the original key value pairs and the new key value pair', function () {
+    it('returns an driver with the original key value pairs and the new key value pair', function () {
       expect(updateDriverWithKeyAndValue(driver, 'address', '11 Broadway')).to.eql({
         name: 'Sam',
         address: '11 Broadway'
@@ -41,7 +47,6 @@ describe('drivers', function() {
       let newdriver = deleteFromDriverByKey(driver, 'name');
 
       expect(newdriver['name']).to.equal(undefined);
-      expect(typeof newdriver).to.equal('object');
     });
 
     it('does not modify the original driver (it is non-destructive)', function () {
@@ -62,7 +67,6 @@ describe('drivers', function() {
       let newdriver = destructivelyDeleteFromDriverByKey(driver, 'name');
 
       expect(driver['name']).to.equal(undefined);
-      expect(driver).to.equal(newdriver);
     });
   });
 });
